@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack serve"
+    "dev": "webpack serve",
+    "server": "node src/server/index.js"
   },
-  "author": "Dmitriy <dima.mattock@gmail.com>",
+  "author": "Dmitriy Matyhin",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -30,8 +31,17 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "ejs": "^3.1.5",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "lowdb": "^1.0.0",
+    "morgan": "~1.9.1",
+    "nconf": "^0.11.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "shortid": "^2.2.16",
     "styled-components": "^5.2.1"
   }
 }
