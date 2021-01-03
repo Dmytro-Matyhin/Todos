@@ -1,0 +1,22 @@
+.button {
+  margin-left: 10px;
+  border: 2px solid #FFEC00;
+  font-size: 20px;
+  line-height: inherit;
+  font-family: inherit;
+  padding: 8px 16px;
+  background-color: #211D25;
+  text-transform: none;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  appearance: none;
+  color: #fff;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: #1f122c;
+  }
+}

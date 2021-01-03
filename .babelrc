@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    "syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+    [
+      "module-resolver", {
+        "root": ["./src"]
+      }
+    ]
+  ],
+  
+  "presets": ["@babel/env", "@babel/preset-react"]
+}

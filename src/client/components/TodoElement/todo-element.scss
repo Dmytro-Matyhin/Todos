@@ -1,0 +1,45 @@
+.todo-item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #211D25;
+
+  &-checkbox {
+    margin: 0 15px 0 0;
+  }
+  &-button {
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    margin-left: auto;
+    text-decoration: none;
+    padding: 0;
+    transform: rotate(45deg);
+    font-size: 38px;
+    line-height: 28px;
+    text-align: center;
+
+    &::before {
+      content: "+",
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  &-done {
+    background-color: #1f122c;
+
+    .todo-item-text {
+      text-decoration: line-through;
+      color: #7a2d2d;
+    }
+  }
+}
