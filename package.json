@@ -1,5 +1,5 @@
 {
-  "name": "Todos",
+  "name": "todos",
   "version": "1.0.0",
   "description": "Todos",
   "main": "index.js",
@@ -8,6 +8,7 @@
     "dev": "webpack serve",
     "server": "node src/server/index.js"
   },
+  "proxy": "http://localhost:4000",
   "author": "Dmitriy Matyhin",
   "license": "ISC",
   "devDependencies": {

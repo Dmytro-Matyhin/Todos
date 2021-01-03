@@ -3,6 +3,13 @@ import Title from '../Title/title';
 import Input from '../Input/input';
 import Button from '../Button/button';
 import TodoList from '../TodoList/todo-list';
+import { 
+  sendTodo,
+  getTodosList,
+  deleteTodo,
+  updateTodoStatus
+} from '../../api/todos-api';
+
 import './root.scss';
 
 class Root extends React.Component {
@@ -11,10 +18,12 @@ class Root extends React.Component {
 
     this.state = {
       inputValue: '',
-      todos: [
-        {text: 'Eat food', done: true, id: 1}
-      ]
+      todos: [],
     }
+  }
+
+  componentDidMount() {
+    this.getTodos()
   }
 
   handleChange = event => {
@@ -23,36 +32,37 @@ class Root extends React.Component {
     })
   }
 
-  onCreateTodo = text =>  {
-    const { todos } = this.state;
+  getTodos = () => {
+    getTodosList()
+    .then(todos => {
+      this.setState({ todos })
+    })
+  }
+
+  onCreateTodo = text => {
     const newTodo = {
       text,
-      done: false,
-      id: Math.random()
+      done: false
     }
-
-    const updatedTodos = todos.concat(newTodo);
-    this.setState({
-      todos: updatedTodos
-    })
+    sendTodo(newTodo)
+    .then(() => this.getTodos())
   }
 
   handleChangeTodoStatus = id => {
-    const todos = this.state.todos.map(todo => {
-      if (todo.id === id) {
-        return {
-          ...todo,
-          done: !todo.done
-        }
-      }
-      return todo;
-    })
-    this.setState({ todos })
+    const { text, done } = this.state.todos.find(todo => todo.id === id)
+    const updatedTodo = {
+      text,
+      done: !done,
+    };
+
+    updateTodoStatus(id, updatedTodo)
+    .then(() => this.getTodos()) 
+
   }
 
   handleDeleteTodo = id => {
-    const updatedTodos = this.state.todos.filter(todo => todo.id !== id)
-    this.setState({ todos: updatedTodos })
+    deleteTodo(id)
+    .then(() => this.getTodos()) 
   }
 
   render() {
@@ -73,12 +83,15 @@ class Root extends React.Component {
             inputValue={this.state.inputValue}
           />
         </form>
-        <TodoList 
-          changeTodoStatus={this.handleChangeTodoStatus}
-          delTodo={this.handleDeleteTodo}
-          todos={this.state.todos}
-          inputValue={this.state.inputValue}
-        />
+        { 
+          this.state.todos.length &&
+          <TodoList 
+            changeTodoStatus={this.handleChangeTodoStatus}
+            delTodo={this.handleDeleteTodo}
+            todos={this.state.todos}
+            inputValue={this.state.inputValue}
+          />
+        }
       </React.Fragment>
     )
   }
