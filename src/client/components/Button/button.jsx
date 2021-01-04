@@ -4,12 +4,10 @@ import './button.scss'
 class Button extends React.Component {
   constructor(props) {
     super(props)
-
-    this.handleTodoCreate = this.handleTodoCreate.bind(this);
   }
 
-  handleTodoCreate() {
-    this.props.onCreateTodo(this.props.inputValue)
+  handleTodoCreate = () => {
+    this.props.CreateTodo(this.props.inputValue)
   }
 
   render() {
@@ -17,6 +15,7 @@ class Button extends React.Component {
       <button 
         className="button"
         onClick={this.handleTodoCreate}
+        disabled={!this.props.inputValue}
       >
       Add Todo
       </button>
