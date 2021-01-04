@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import '../../styles/todo-element.scss'
 
 class TodoElement extends React.Component {
@@ -34,6 +36,14 @@ class TodoElement extends React.Component {
       </li>
     )
   }
+}
+
+TodoElement.propTypes = {
+  changeTodoStatus: PropTypes.func,
+  delTodo: PropTypes.func,
+  done: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 }
 
 export default TodoElement

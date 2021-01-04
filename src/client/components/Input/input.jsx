@@ -1,5 +1,7 @@
 import React from 'react';
-import '../../styles/input.scss'
+import PropTypes from 'prop-types';
+
+import '../../styles/input.scss';
 
 class Input extends React.Component {
   constructor(props) {
@@ -25,5 +27,10 @@ class Input extends React.Component {
     )
   }
 }
+
+Input.propTypes = {
+  inputValue: PropTypes.string,
+  handleChange: PropTypes.func,
+};
 
 export default Input

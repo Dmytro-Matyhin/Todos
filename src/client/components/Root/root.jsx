@@ -90,14 +90,14 @@ class Root extends React.Component {
             inputValue={this.state.inputValue}
           />
         </form>
-        { 
-          this.state.todos.length &&
-          <TodoList 
-            changeTodoStatus={this.handleChangeTodoStatus}
-            delTodo={this.handleDeleteTodo}
-            todos={this.state.todos}
-            inputValue={this.state.inputValue}
-          />
+        {this.state.todos.length 
+          ? <TodoList 
+              changeTodoStatus={this.handleChangeTodoStatus}
+              delTodo={this.handleDeleteTodo}
+              todos={this.state.todos}
+              inputValue={this.state.inputValue}
+            />
+          : null
         }
       </React.Fragment>
     )

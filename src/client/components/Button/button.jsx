@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import '../../styles/button.scss'
 
 class Button extends React.Component {
@@ -28,6 +30,11 @@ class Button extends React.Component {
       </button>
     )
   }
+}
+
+Button.propTypes = {
+  inputValue: PropTypes.string,
+  CreateTodo: PropTypes.func,
 }
 
 export default Button

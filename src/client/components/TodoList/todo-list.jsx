@@ -1,5 +1,7 @@
 import React from 'react'
 import TodoElement from '../TodoElement/todo-element';
+import PropTypes from 'prop-types';
+
 import '../../styles/todo-list.scss'
 
 class TodoList extends React.Component {
@@ -25,6 +27,13 @@ class TodoList extends React.Component {
       </div>
     )
   }
+}
+
+TodoList.propTypes = {
+  inputValue: PropTypes.string.isRequired,
+  changeTodoStatus: PropTypes.func,
+  delTodo: PropTypes.func,
+  todos: PropTypes.array,
 }
 
 export default TodoList
