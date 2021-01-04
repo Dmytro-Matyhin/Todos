@@ -41,7 +41,7 @@ export const deleteTodo = todoId => {
 export const updateTodoStatus = (todoId, todoData) => {
   return fetch(`${baseUrl}/${todosPath}/${todoId}`, {
     method: 'PUT',
-    body: JSON.stringify({...todoData, todoId}),
+    body: JSON.stringify({...todoData}),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
     }
