@@ -19,4 +19,12 @@
   &:hover {
     background-color: #1f122c;
   }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+    
+    &:hover {
+      background-color: #211D25;
+    }
+  }
 }
