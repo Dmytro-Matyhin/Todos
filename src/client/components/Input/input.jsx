@@ -1,5 +1,5 @@
 import React from 'react';
-import './input.scss'
+import '../../styles/input.scss'
 
 class Input extends React.Component {
   constructor(props) {

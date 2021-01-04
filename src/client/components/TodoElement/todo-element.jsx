@@ -1,5 +1,5 @@
 import React from 'react';
-import './todo-element.scss';
+import '../../styles/todo-element.scss'
 
 const TodoElement = ({ text, done, id, changeTodoStatus, delTodo }) => {
   const todoItemDone = `todo-item ${done ? 'todo-item-done' : ''}`
