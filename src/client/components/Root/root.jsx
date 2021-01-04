@@ -105,12 +105,3 @@ class Root extends React.Component {
 }
 
 export default Root
-
-/*
-3. add link in header to this project on github (optional)
-4. add propTypes, defaultProps
-5. add shouldComponentUpdate
-6. create file for styles and add variables there(colors, backgrounds, etc) (optional)
-7. create authorization (future)
-8. use mySQL instead lowdb(future)
- */

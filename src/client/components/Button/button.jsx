@@ -5,6 +5,13 @@ class Button extends React.Component {
   constructor(props) {
     super(props)
   }
+  
+  shouldComponentUpdate(nextProps) {
+    if (this.props.inputValue === nextProps.inputValue) {
+      return false
+    }
+    return true;
+  }
 
   handleTodoCreate = () => {
     this.props.CreateTodo(this.props.inputValue)

@@ -6,6 +6,13 @@ class Input extends React.Component {
     super(props)
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.inputValue === nextProps.inputValue) {
+      return false
+    }
+    return true;
+  }
+
   render() {
     return (
       <input 
