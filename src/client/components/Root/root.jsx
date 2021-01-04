@@ -32,6 +32,13 @@ class Root extends React.Component {
     })
   }
 
+  handleSubmit = event => {
+    event.preventDefault()
+    const form = event.target;
+    form.reset();
+    this.setState({ inputValue: '' })
+  }
+
   getTodos = () => {
     getTodosList()
     .then(todos => {
@@ -39,7 +46,7 @@ class Root extends React.Component {
     })
   }
 
-  onCreateTodo = text => {
+  handleCreateTodo = text => {
     const newTodo = {
       text,
       done: false
@@ -71,7 +78,7 @@ class Root extends React.Component {
         <Title />
         <form
           className="form"
-          onSubmit={event => event.preventDefault()}
+          onSubmit={this.handleSubmit}
         >
           <Input 
             value={this.state.inputValue}
@@ -79,7 +86,7 @@ class Root extends React.Component {
           />
           <Button 
             type="submit"
-            onCreateTodo={this.onCreateTodo}
+            CreateTodo={this.handleCreateTodo}
             inputValue={this.state.inputValue}
           />
         </form>
