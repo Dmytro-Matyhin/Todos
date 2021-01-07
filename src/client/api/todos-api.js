@@ -1,6 +1,10 @@
-import {environmentUrls} from '../utils/environment';
+import {environmentUrls} from '../utils/environment'
 
-const { baseUrl, todosPath } = environmentUrls;
+const { baseUrl, todosPath } = environmentUrls
+
+const DEFAULT_HEADERS = {
+  "Content-type": "application/json; charset=UTF-8"
+}
 
 export const getTodosList = () => {
   return fetch(`${baseUrl}/${todosPath}`)
@@ -13,13 +17,11 @@ export const sendTodo = todoData => {
   return fetch(`${baseUrl}/${todosPath}`, {
     method: 'POST',
     body: JSON.stringify(todoData),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
+    headers: DEFAULT_HEADERS
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error('Failed to POST todos');
+      throw new Error('Failed to POST todos')
     }
   })
 }
@@ -27,28 +29,24 @@ export const sendTodo = todoData => {
 export const deleteTodo = todoId => {
   return fetch(`${baseUrl}/${todosPath}/${todoId}`, {
     method: 'DELETE',
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
+    headers: DEFAULT_HEADERS
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error('Failed to DELETE todos');
+      throw new Error('Failed to DELETE todos')
     }
   })
 }
 
-export const updateTodoStatus = (todoId, todoData) => {
+export const updateTodo = (todoId, todoData) => {
   return fetch(`${baseUrl}/${todosPath}/${todoId}`, {
     method: 'PUT',
     body: JSON.stringify({...todoData}),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
+    headers: DEFAULT_HEADERS
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error('Failed to POST todos');
+      throw new Error('Failed to POST todos')
     }
   })
 }
