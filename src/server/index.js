@@ -1,16 +1,16 @@
-const express = require('express');
-const cors = require('cors');
-const http = require('http');
-const config = require('./config');
+const express = require('express')
+const cors = require('cors')
+const http = require('http')
+const config = require('./config')
 
-const { todos: todos } = require('./routes');
-const app = express();
+const { todos: todos } = require('./routes')
+const app = express()
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
-app.use('/todos', todos);
+app.use('/todos', todos)
 
 
 app.set('port', config.get('port'))

@@ -4,6 +4,6 @@ const path = require('path')
 const adapter = new FileSync(path.resolve(__dirname, './db.json'))
 const db = low(adapter);
 
-db.defaults({ todos: [], count: 0}).write()
+db.defaults({ todos: []}).write()
 
 module.exports = db

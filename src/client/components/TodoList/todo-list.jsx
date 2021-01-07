@@ -1,6 +1,6 @@
 import React from 'react'
-import TodoElement from '../TodoElement/todo-element';
-import PropTypes from 'prop-types';
+import TodoElement from '../TodoElement/todo-element'
+import PropTypes from 'prop-types'
 
 import '../../styles/todo-list.scss'
 
@@ -10,7 +10,7 @@ class TodoList extends React.Component {
   }
 
   render() {
-    const sortTodos = this.props.todos.slice().sort((a, b) => a.done - b.done);
+    const sortTodos = this.props.todos.slice().sort((a, b) => a.done - b.done)
 
     return (
       <div className="todo">
@@ -20,7 +20,8 @@ class TodoList extends React.Component {
               key={todo.id}
               {...todo}
               changeTodoStatus={this.props.changeTodoStatus}
-              delTodo={this.props.delTodo}
+              changeTodoText={this.props.changeTodoText}
+              deleteTodo={this.props.deleteTodo}
             />
           ))}
         </ul>
@@ -32,7 +33,8 @@ class TodoList extends React.Component {
 TodoList.propTypes = {
   inputValue: PropTypes.string.isRequired,
   changeTodoStatus: PropTypes.func,
-  delTodo: PropTypes.func,
+  changeTodoText: PropTypes.func,
+  deleteTodo: PropTypes.func,
   todos: PropTypes.array,
 }
 

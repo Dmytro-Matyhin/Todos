@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import '../../styles/input.scss';
+import '../../styles/input.scss'
 
 class Input extends React.Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Input extends React.Component {
     if (this.props.inputValue === nextProps.inputValue) {
       return false
     }
-    return true;
+    return true
   }
 
   render() {
@@ -20,7 +20,7 @@ class Input extends React.Component {
       <input 
         className="input"
         type="text"
-        placeholder="What need to be done?"
+        placeholder="What should be done?"
         value={this.props.inputValue}
         onChange={this.props.handleChange}
       />
@@ -31,6 +31,6 @@ class Input extends React.Component {
 Input.propTypes = {
   inputValue: PropTypes.string,
   handleChange: PropTypes.func,
-};
+}
 
 export default Input

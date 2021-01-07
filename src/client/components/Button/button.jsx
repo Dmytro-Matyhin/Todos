@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import '../../styles/button.scss'
 
@@ -12,7 +12,7 @@ class Button extends React.Component {
     if (this.props.inputValue === nextProps.inputValue) {
       return false
     }
-    return true;
+    return true
   }
 
   handleTodoCreate = () => {
