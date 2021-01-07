@@ -1,7 +1,7 @@
 .todo-item {
   list-style: none;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   border-radius: 5px;
   padding: 15px;
   margin-top: 15px;
@@ -10,36 +10,95 @@
   &-checkbox {
     margin: 0 15px 0 0;
   }
+
   &-button {
     width: 24px;
     height: 24px;
     color: #fff;
-    border-radius: 50%;
     outline: none;
     cursor: pointer;
     background: transparent;
     border: none;
     margin-left: auto;
+    font-size: 20px;
     text-decoration: none;
     padding: 0;
-    transform: rotate(45deg);
-    font-size: 38px;
     line-height: 28px;
     text-align: center;
 
-    &::before {
-      content: "+",
-    }
     &:hover {
       opacity: 0.8;
     }
   }
+
   &-done {
     background-color: #1f122c;
 
     .todo-item-text {
       text-decoration: line-through;
       color: #7a2d2d;
+    }
+  }
+
+  &-update {
+    margin-right: 15px;
+    border: 1px solid #FFEC00;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 8px;
+    background-color: #211D25;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-value {
+    display: flex;
+    align-items: center;
+  }
+
+  &-change {
+    background-color: transparent;
+    color: #fff;
+    border-bottom: 2px solid #FFEC00;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-size: 20px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-change-save {
+    margin-right: 15px;
+    border: 1px solid #FFEC00;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 6px 8px;
+    background-color: #211D25;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    text-transform: uppercase;
+
+    &:focus {
+      outline: none;
+    }
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
     }
   }
 }
