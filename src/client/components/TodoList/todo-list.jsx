@@ -10,12 +10,13 @@ class TodoList extends React.Component {
   }
 
   render() {
-    const sortTodos = this.props.todos.slice().sort((a, b) => a.done - b.done)
+    // const sortTodos = this.props.todos.slice().sort((a, b) => a.done - b.done)
+    const todosList = this.props.todos
 
     return (
       <div className="todo">
         <ul className="todo-list">
-          {sortTodos.map(todo => (
+          {todosList.map(todo => (
             <TodoElement 
               key={todo.id}
               {...todo}
