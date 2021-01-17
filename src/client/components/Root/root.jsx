@@ -5,7 +5,6 @@ import Button from '../Button/button'
 import TodoList from '../TodoList/todo-list'
 import { 
   sendTodo,
-  // getTodosList,
   deleteTodo,
   updateTodo,
   getTodosListWithParams
@@ -71,6 +70,16 @@ class Root extends React.Component {
       this.setState({ 
         todos,
         skip: this.state.defaultSkip
+      })
+    })
+  }
+
+  previousTodosPage() {
+    getTodosListWithParams(this.state.skip - this.state.take, this.state.take)
+    .then(todos => {
+      this.setState({
+        todos,
+        skip: this.state.skip - this.state.take
       })
     })
   }
@@ -143,7 +152,12 @@ class Root extends React.Component {
         >
         NEXT
         </button>
-        <button onClick={this.previousTodosPage}>PREVIOUS</button>
+        <button
+        onClick={this.previousTodosPage}
+        disabled={this.state.skip < this.state.todos.length}
+        >
+        PREVIOUS
+        </button>
       </React.Fragment>
     )
   }

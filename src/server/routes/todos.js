@@ -14,13 +14,12 @@ router.get('/', function(req, res, next) {
 
   if (skip < 0 || take < 0) {
     onPageTodos = allTodos.slice(defaultSkip, defaultTodos)
+  } else if (skip > allTodos.length) {
+    onPageTodos = allTodos.slice(defaultSkip, defaultTodos)
   } else if (skip == 0) {
     onPageTodos = allTodos.slice(skip, take)
   } else if (skip > 0) {
     onPageTodos = allTodos.slice(skip, skip + take)
-  } 
-  else if ( (skip + take) > allTodos.length) {
-    onPageTodos = allTodos.slice(skip, allTodos.length)
   }
 
   res.status(200).json({
