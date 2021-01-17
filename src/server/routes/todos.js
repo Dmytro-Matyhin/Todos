@@ -4,12 +4,29 @@ const router = express.Router()
 const db = require('../database')
 
 router.get('/', function(req, res, next) {
-  let todos = db.get('todos')
+  let allTodos = db.get('todos')
+  let onPageTodos = []
+
+  const skip = parseInt(req.query.skip)
+  const take = parseInt(req.query.take)
+  const defaultTodos = 10
+  const defaultSkip = 0
+
+  if (skip < 0 || take < 0) {
+    onPageTodos = allTodos.slice(defaultSkip, defaultTodos)
+  } else if (skip == 0) {
+    onPageTodos = allTodos.slice(skip, take)
+  } else if (skip > 0) {
+    onPageTodos = allTodos.slice(skip, skip + take)
+  } 
+  else if ( (skip + take) > allTodos.length) {
+    onPageTodos = allTodos.slice(skip, allTodos.length)
+  }
 
   res.status(200).json({
     status: 'success',
-    data: todos,
-  }) 
+    data: onPageTodos
+  })
 
 }).get('/:id', function(req, res, next) {
   let todo = db.get('todos').find({id: req.params.id})

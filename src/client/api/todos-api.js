@@ -46,7 +46,14 @@ export const updateTodo = (todoId, todoData) => {
   })
   .then(response => {
     if (!response.ok) {
-      throw new Error('Failed to POST todos')
+      throw new Error('Failed to PUT todos')
     }
   })
+}
+
+export const getTodosListWithParams = (skip, take) => {
+  return fetch(`${baseUrl}/${todosPath}?skip=${skip}&take=${take}`)
+  .then(res => res.json())
+  .then(data => data.data)
+  .then(todos => todos)
 }

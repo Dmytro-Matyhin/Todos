@@ -5,9 +5,10 @@ import Button from '../Button/button'
 import TodoList from '../TodoList/todo-list'
 import { 
   sendTodo,
-  getTodosList,
+  // getTodosList,
   deleteTodo,
-  updateTodo
+  updateTodo,
+  getTodosListWithParams
 } from '../../api/todos-api'
 
 import '../../styles/root.scss'
@@ -19,7 +20,15 @@ class Root extends React.Component {
     this.state = {
       inputValue: '',
       todos: [],
+      defaultSkip: 0,
+      defaultTake: 8,
+      skip: 0,
+      take: 8
     }
+
+    this.startTodosPage = this.startTodosPage.bind(this)
+    this.nextTodosPage = this.nextTodosPage.bind(this)
+    this.previousTodosPage = this.previousTodosPage.bind(this)
   }
 
   componentDidMount() {
@@ -40,9 +49,29 @@ class Root extends React.Component {
   }
 
   getTodos = () => {
-    getTodosList()
+    getTodosListWithParams(this.state.skip, this.state.take)
     .then(todos => {
       this.setState({ todos })
+    })
+  }
+
+  nextTodosPage() {
+    getTodosListWithParams(this.state.skip + this.state.take, this.state.take)
+    .then(todos => {
+      this.setState({
+        todos,
+        skip: this.state.skip + this.state.take
+      })
+    })
+  }
+
+  startTodosPage() {
+    getTodosListWithParams(this.state.defaultSkip, this.state.defaultTake)
+    .then(todos => {
+      this.setState({ 
+        todos,
+        skip: this.state.defaultSkip
+      })
     })
   }
 
@@ -107,6 +136,14 @@ class Root extends React.Component {
             />
           : null
         }
+        <button onClick={this.startTodosPage}>ORIGIN</button>
+        <button 
+          onClick={this.nextTodosPage}
+          disabled={this.state.todos.length < this.state.take}
+        >
+        NEXT
+        </button>
+        <button onClick={this.previousTodosPage}>PREVIOUS</button>
       </React.Fragment>
     )
   }
