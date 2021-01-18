@@ -3,24 +3,56 @@ const shortid = require('shortid')
 const router = express.Router()
 const db = require('../database')
 
+const DEFAULT_SKIP = 0
+const MIN_TAKE = 10
+const MAX_TAKE = 25
+
 router.get('/', function(req, res, next) {
   let allTodos = db.get('todos')
   let onPageTodos = []
+  let skip
+  let take
+  const querySkip = parseInt(req.query.skip)
+  const queryTake = parseInt(req.query.take)
+  
+  switch (true) {
+    case querySkip < 0 || queryTake < 0:
+      skip = DEFAULT_SKIP
+      take = MIN_TAKE
+      break
+      
+    case querySkip > allTodos.size().value() || queryTake > allTodos.size().value():
+      skip = DEFAULT_SKIP
+      take = MAX_TAKE
+      break 
 
-  const skip = parseInt(req.query.skip)
-  const take = parseInt(req.query.take)
-  const defaultTodos = 10
-  const defaultSkip = 0
+    case querySkip == undefined || querySkip == null || isNaN(querySkip):
+      skip = DEFAULT_SKIP
+      take = MIN_TAKE
+      break
 
-  if (skip < 0 || take < 0) {
-    onPageTodos = allTodos.slice(defaultSkip, defaultTodos)
-  } else if (skip > allTodos.length) {
-    onPageTodos = allTodos.slice(defaultSkip, defaultTodos)
-  } else if (skip == 0) {
-    onPageTodos = allTodos.slice(skip, take)
-  } else if (skip > 0) {
-    onPageTodos = allTodos.slice(skip, skip + take)
+    case queryTake == undefined || queryTake == null || isNaN(queryTake):
+      skip = DEFAULT_SKIP
+      take = MIN_TAKE
+      break
+
+    case querySkip == 0 && queryTake == 0 || querySkip > 0 && queryTake == 0:
+      skip = querySkip
+      take = MIN_TAKE
+      break
+      
+    case !querySkip || !queryTake:
+      skip = querySkip
+      take = queryTake
+      break
+
+    case querySkip > 1:
+      skip = querySkip
+      take = querySkip + queryTake
+      break
   }
+
+  onPageTodos = allTodos.slice(skip, take)
 
   res.status(200).json({
     status: 'success',
