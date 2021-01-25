@@ -27,4 +27,15 @@
       background-color: #211D25;
     }
   }
+
+  &-pages {
+    margin-top: 15px;
+    font-size: 16px;
+    padding: 5px 10px;
+
+     &:hover {
+      background-color: #211D25;
+      opacity: 0.8;
+     }
+  }
 }

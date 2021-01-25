@@ -145,14 +145,16 @@ class Root extends React.Component {
             />
           : null
         }
-        <button onClick={this.startTodosPage}>ORIGIN</button>
+        <button className="button button-pages" onClick={this.startTodosPage}>ORIGIN</button>
         <button 
+          className="button button-pages"
           onClick={this.nextTodosPage}
           disabled={this.state.todos.length < this.state.take}
         >
         NEXT
         </button>
         <button
+        className="button button-pages"
         onClick={this.previousTodosPage}
         disabled={this.state.skip < this.state.todos.length}
         >
